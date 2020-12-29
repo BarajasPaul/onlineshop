@@ -18,8 +18,8 @@ class Cart(object):
         """
         Add a product to the cart or update its quantity.
         """
-        product_id =  str(product.id)
-        if prodcut_id not in self.cart:
+        product_id = str(product.id)
+        if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
                                      'price': str(product.price)}
         if override_quantity:
@@ -57,7 +57,7 @@ class Cart(object):
         """
         product_ids = self.cart.keys()
         #get the product objects and add them to the cart
-        products = Product.object.filter(id__in=product_ids)
+        products = Product.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
         for product in products:
             cart[str(product.id)]['product'] = product
